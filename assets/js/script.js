@@ -1,16 +1,16 @@
 var questionBank = [
     {
-        question: "1.",
+        question: "1. What is the Master Chief's calltag?",
         answers:{
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d"
+            a: "Sierra-117",
+            b: "Brave-069",
+            c: "Romeo-420",
+            d: "Delta-006"
         },
         correct: "a"
     },
     {
-        question: "2.",
+        question: "2. ",
         answers:{
             a: "a",
             b: "b",
@@ -105,8 +105,9 @@ function startGame(){
     for (var i = 0; i < answerButtons.length; i++) {
         answerButtons[i].style.visibility = "visible";
     }
+    resetButton.style.visibility = "hidden";
     gameDisplay.style.visibility = "visible";
-    startButton.style.Display = "none";
+    startButton.style.visibility = "hidden";
     console.log(startDiv.style.visibilty);
     resultsDisplay.style.visibility = "hidden";
     myForm.style.visibility = "hidden";
@@ -123,16 +124,18 @@ function endGame(result){
     total += secondsLeft;
     gameOver = true;
     if(result === true){
-        questionDisplay.textContent = "You win! Play again?"
+        questionDisplay.textContent = "You win!"
     }
     else{
-        questionDisplay.textContent = "You lose! Play again?"
+        questionDisplay.textContent = "You lose!"
     }    
 }
 
 function postScore(name){
+    resetButton.style.visibility = "visible";
     gameDisplay.style.visibility = "hidden";
     myForm.style.visibility = "hidden";
+    startButton.style.visibility = "visible";
     var newScore = {name, total};
     scores.push(newScore);
     var child = highScoreList.lastElementChild;
@@ -193,6 +196,7 @@ function checkAnswer(input){
 function resetScores(){
     if(gameOver){
         localStorage.clear();
+        scores = [];
         var child = highScoreList.lastElementChild;
         while(child){
         highScoreList.removeChild(child);

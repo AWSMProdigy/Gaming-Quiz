@@ -1,4 +1,36 @@
+body{
+    text-align: center;
+    font-family: sans-serif;
+}
 
+#starto{
+    width: 20%;
+    visibility: visible;
+    background-color: aqua;
+    border: 2px solid black;
+    font-family: sans-serif;
+}
+
+#gameDisplay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.answers{
+    width: 40%;
+}
+
+#reseto{
+    visibility: hidden;
+}
+
+ul{
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+}
 
 #answerA, #answerB, #answerC, #answerD {
     visibility: hidden;
