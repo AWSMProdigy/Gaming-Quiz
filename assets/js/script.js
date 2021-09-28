@@ -10,42 +10,42 @@ var questionBank = [
         correct: "a"
     },
     {
-        question: "2. ",
+        question: "2. What did Darth Vader reveal to Luke after being accused of killing Luke's father?",
         answers:{
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d"
+            a: "Luke, I am your father.",
+            b: "No, I am your father.",
+            c: "I did not kill him.",
+            d: "I didn't kill your father uWu"
         },
         correct: "b"
     },
     {
-        question: "3.",
+        question: "3. What sword does Link use to defeat Ganondorf in each of his appearances?",
         answers:{
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d"
+            a: "Buster Sword",
+            b: "Lightsaber",
+            c: "Master Sword",
+            d: "Energy Sword"
         },
         correct: "c"
     },
     {
-        question: "4.",
+        question: "4. Finish the quote: \nShipmaster, they outnumber us 3 to 1!",
         answers:{
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d"
+            a: "All ships retreat, fall back at the ark!",
+            b: "Open fire, don't let them through!",
+            c: "Game over man, game over!",
+            d: "Then it is an even fight. All cruisers, fire at will. Burn their mongrel hides."
         },
         correct: "d"
     },
     {
-        question: "5.",
+        question: "5. Samus Aran is the galaxy's most dangerous bounty hunter. Name the location of her first game.",
         answers:{
-            a: "a",
-            b: "b",
-            c: "c",
-            d: "d"
+            a: "Zebes",
+            b: "SR388",
+            c: "ZDR",
+            d: "Samus is a girl!?"
         },
         correct: "a"
     },
@@ -108,7 +108,6 @@ function startGame(){
     resetButton.style.visibility = "hidden";
     gameDisplay.style.visibility = "visible";
     startButton.style.visibility = "hidden";
-    console.log(startDiv.style.visibilty);
     resultsDisplay.style.visibility = "hidden";
     myForm.style.visibility = "hidden";
     
@@ -143,6 +142,10 @@ function postScore(name){
         highScoreList.removeChild(child);
         child = highScoreList.lastElementChild;
     }
+
+    scores.sort(function(a,b){
+        return Object.values(b)[1] - Object.values(a)[1];
+    })
     for(var i = 0; i < scores.length; i++){
         newLI = document.createElement("li");
         newLI.innerHTML = "Name: " + Object.values(scores[i])[0] + " Score: " + Object.values(scores[i])[1];
@@ -180,6 +183,7 @@ function checkAnswer(input){
         console.log(input);
         if(input !== questionBank[current].correct){
             secondsLeft = secondsLeft - 5;
+            myTimer.textContent = secondsLeft + " seconds left.";
         }
         else if(input === questionBank[current].correct){
             total += 5;
