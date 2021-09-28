@@ -7,16 +7,27 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Gaming Quiz</title>
   </head>
-  <body>
-    <button id="starto">Begin</button>
-    <h1 id="theTimer"></h1>
-    <h1 id="question"></h1>
-    <button id="answerA"></button>
-    <button id="answerB"></button>
-    <button id="answerC"></button>
-    <button id="answerD"></button>
-    <section id="results">
-      <h1 id="scores">kek</h1>
+  <body>   
+    <section id="startDiv">
+      <button id="starto">Begin</button>
+    </section>
+    <section id="gameDisplay">
+      <h1 id="theTimer"></h1>
+      <h1 id="question"></h1>
+      <button class="answers" id="answerA"></button>
+      <button class="answers" id="answerB"></button>
+      <button class="answers" id="answerC"></button>
+      <button class="answers" id="answerD"></button>
+    </section>
+    <form id="myForm">
+      <label for="nickName">Enter Name:</label><br>
+      <input type="text" id="nickName" name="nickName"><br>
+    </form>
+    <section id="results"></section>
+      <button id="reseto">Reset</button>
+      <ul id="highScore">
+
+      </ul>
     </section>
     <script src="./assets/js/script.js"></script>
   </body>

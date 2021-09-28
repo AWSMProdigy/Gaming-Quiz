@@ -1,3 +1,8 @@
+
+
 #answerA, #answerB, #answerC, #answerD {
     visibility: hidden;
+}
+#scores{
+    font-size: 8em;
 }
