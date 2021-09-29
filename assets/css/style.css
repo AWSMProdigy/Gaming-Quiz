@@ -18,6 +18,15 @@ body{
     align-items: center;
 }
 
+#results{
+    margin: 0 auto;
+    visibility: hidden;
+    background-color: rgb(226, 160, 84);
+    border: 3px solid cyan;
+    width: fit-content;
+    padding: 30px;
+}
+
 .answers{
     width: 40%;
 }

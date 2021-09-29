@@ -1,3 +1,4 @@
+//Questions to display
 var questionBank = [
     {
         question: "1. What is the Master Chief's calltag?",
@@ -50,6 +51,7 @@ var questionBank = [
         correct: "a"
     },
 ];
+//If scores already exist in local storage, get them, otherwise store them
 var scores = [];
 
 if(localStorage.getItem("scores") == null){
@@ -59,7 +61,7 @@ if(localStorage.getItem("scores") == null){
     getscores();
 }
 
-
+//Initialize variables
 var myTimer = document.querySelector("#theTimer");
 var gameOver;
 var startButton = document.querySelector("#starto");
@@ -80,13 +82,15 @@ var secondsLeft = 60;
 var current = 0;
 var timerInterval;
 var total;
-
+//Set form style to invisible to start
 myForm.style.visibility = "hidden";
 
+//Put scores into localstorage
 function storescores(){
     localStorage.setItem("scores", JSON.stringify(scores));
 }
   
+//Get scores from local storage
 function getscores(){
     var tempscores = JSON.parse(localStorage.getItem("scores"));
   
@@ -95,6 +99,7 @@ function getscores(){
     }
 }
 
+//Begin the game, starting time, resetting values, and making the right things visible
 function startGame(){
     clearInterval(timerInterval);
     secondsLeft = 60;
@@ -114,9 +119,10 @@ function startGame(){
     showQuestions(current);
 }
 
+//End the game
 function endGame(result){
     myForm.style.visibility = "visible";
-    resultsDisplay.style.visibility = "visible";
+    resultsDisplay.style.visibility = "hidden";
     for (var i = 0; i < answerButtons.length; i++) {
         answerButtons[i].style.visibility = "hidden";
     }
@@ -130,22 +136,28 @@ function endGame(result){
     }    
 }
 
+//After inputting name, reset the current li elements of the high score list and replace them with the proper sort
 function postScore(name){
     resetButton.style.visibility = "visible";
     gameDisplay.style.visibility = "hidden";
     myForm.style.visibility = "hidden";
     startButton.style.visibility = "visible";
+    resultsDisplay.style.visibility = "visible";
+
     var newScore = {name, total};
     scores.push(newScore);
     var child = highScoreList.lastElementChild;
+    //Remove all children in list
     while(child){
         highScoreList.removeChild(child);
         child = highScoreList.lastElementChild;
     }
 
+    //sort scores from biggest to smallest 
     scores.sort(function(a,b){
         return Object.values(b)[1] - Object.values(a)[1];
     })
+    //Put items into ul and then store them
     for(var i = 0; i < scores.length; i++){
         newLI = document.createElement("li");
         newLI.innerHTML = "Name: " + Object.values(scores[i])[0] + " Score: " + Object.values(scores[i])[1];
@@ -154,6 +166,7 @@ function postScore(name){
     storescores();
 }
 
+//Display the question pertaining to the number given to the function
 function showQuestions(number){
     startButton.style.visibilty = "hidden";
 
@@ -164,7 +177,7 @@ function showQuestions(number){
         dDisplay.textContent = questionBank[number].answers.d;
     
 }
-
+//Set the time and check to see if we run out of time every second
 function setTime() {
     myTimer.textContent = secondsLeft + " seconds left.";
     timerInterval = setInterval(function() {
@@ -178,6 +191,7 @@ function setTime() {
     }, 1000);
 }
 
+//Takes input and checks the current question in the question bank for right or wrong
 function checkAnswer(input){
     if(!gameOver){
         console.log(input);
@@ -197,6 +211,7 @@ function checkAnswer(input){
     }
 }
 
+//Get rid of all scores from the current array, local storage, and from the screen
 function resetScores(){
     if(gameOver){
         localStorage.clear();
@@ -211,7 +226,7 @@ function resetScores(){
 
 
 
-
+//Event listeners
 myForm.addEventListener('submit', function(event){
     event.preventDefault();
     postScore(input.value);
